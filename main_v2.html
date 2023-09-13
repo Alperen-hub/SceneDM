@@ -1,0 +1,350 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NV8BHZ9ZM2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-NV8BHZ9ZM2');
+  </script>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+  <meta name="author" content="Michael Janner">
+  <meta name="description" content="Diffusion models for reinforcement learning and planning">
+  <meta name="keywords" content="diffusion models, deep, reinforcement learning, rl">
+
+  <script src="files/head.js"></script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <article class="post-content">
+    <meta name="twitter:title" content="Planning with Diffusion for Flexible Behavior Synthesis"/>
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://diffusion-planning.github.io/images/diffuser-card.png" />
+  <article class="post-content">
+
+  <title>Diffuser: Reinforcement Learning with Diffusion Models</title>
+  <link rel="stylesheet" href="./files/font.css">
+  <link rel="stylesheet" href="./files/main.css">
+
+  <link rel="stylesheet" type="text/css"
+      href="https://cdn.rawgit.com/dreampulse/computer-modern-web-font/master/fonts.css">
+
+  <style>
+    body {
+      font-family: "Computer Modern Serif", serif;
+      font-size: 14pt;
+    }
+
+
+    * {padding:0;margin:0;box-sizing:border-box;}
+    #video {
+      position: relative;
+      padding-bottom: 45%; /* 16:9 */
+      height: 0;
+    }
+    #video iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 80%;
+      height: 100%;
+      transform: translateX(12.5%);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: inherit;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .link {
+      /*color: #0066CC;*/
+      color: #bb2222;
+      /*color: #882222;*/
+      text-decoration: none;
+    }
+    .link:hover {
+      text-decoration: underline;
+    }
+    .nounderline:hover {
+      text-decoration: none;
+    }
+
+    .link2 {
+      color: #0055AA;
+      /*color: #882222;*/
+      /*color: #882222;*/
+      text-decoration: none;
+    }
+    .link2:hover {
+      text-decoration: underline;
+    }
+
+  .video-container {
+      background-color: white;
+      position: relative;
+      padding-left: 17.5%;
+      /* 16:9 * .65 */
+      padding-bottom: 36.5625%;
+      height: 0;
+  }
+  .video-container iframe {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 17.5;
+      width: 65%;
+      height: 100%;
+      border: none;
+  }
+
+  </style>
+
+  <style type="text/css">/**
+     * Style sheet used by new LibX tooltip code
+     */
+
+    /* We insert a <div> with libx-tooltip style under the body.
+     * This will inherit body's style - we can't afford to inherit undesirable 
+     * styles and we must redefine what we need.  OTOH, some things, e.g.
+     * font-size, might be ok to be inherited to stay within the page's tone.
+     */
+    .libx-tooltip {
+        display: none;
+        overflow: visible;
+        padding: 5px;
+        z-index: 100;
+        background-color: #eee;
+        color: #000;
+        font-weight: normal;
+        font-style: normal;
+        text-align: left;
+        border: 2px solid #666;
+        border-radius: 5px;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+    }
+
+    .libx-tooltip p {
+        /* override default 1em margin to keep paragraphs inside a tooltip closer together. */
+        margin: .2em;
+    }
+    </style><style type="text/css">/**
+     * Style sheet used by LibX autolinking code
+     */
+    .libx-autolink {
+    }
+
+  </style>
+
+</head>
+
+<script src="js/mobile.js"></script>
+
+  <body>
+
+    <div class="outercontainer">
+      <div class="container" style="width: 90%;">
+
+        <div class="content project_title">
+          <br>
+          <h2>Planning with Diffusion for Flexible Behavior Synthesis</h2>
+          <div>
+            <div class="authors">
+                <a href="https://jannerm.github.io/">Michael Janner</a><sup>*</sup>,
+                <a href="https://yilundu.github.io/">Yilun Du</a><sup>*</sup>,
+                <a href="https://cocosci.mit.edu/josh">Joshua Tenenbaum</a>, and
+                <a href="https://people.eecs.berkeley.edu/~svlevine/">Sergey Levine</a>
+            </div>
+            <div style="margin-top: -0.35em;">
+              <span class="link"><a href="https://icml.cc/">ICML 2022 (long talk)</a></span>&nbsp;&nbsp;
+              <span class="tag">
+                <a href="https://arxiv.org/abs/2205.09991" class="link2">Paper</a>&nbsp;
+                <a href="https://github.com/jannerm/diffuser" class="link2">Code</a>&nbsp;
+                <a href="https://colab.research.google.com/drive/1YajKhu-CUIGBJeQPehjVPJcK_b38a8Nc?usp=sharing" class="link2">Colab</a>&nbsp;
+                <a href="files/bib.txt" class="link2">BibTex</a>&nbsp;
+              </span>
+            </div>
+          </div>
+          <div style="font-size: 0.75em; margin-top: -0.75em;">
+            <span>*</span>equal contribution
+          </div>
+        </div>
+
+        <br><br>
+
+        <div class="content" style="width: 100%; margin-top: -1em;">
+          <div class="title"><b>Planning as denoising</b></div>
+          <br>
+          <table border=0>
+            <tr valign=middle>
+              <td>
+                <img src="images/diffuser_schematic-01.png" width=85%>
+              </td>
+              <td>
+                <p style="float: right; width: 95%">
+                  Diffuser is a <a href="https://arxiv.org/abs/1503.03585" class="link2">denoising diffusion</a> <a href="https://arxiv.org/abs/2006.11239" class="link2">probabilistic model</a> that plans by iteratively refining randomly sampled noise.
+                  The denoising process lends itself to flexible conditioning, by either using gradients of an objective function to bias plans toward high-reward regions or conditioning the plan to reach a specified goal.
+                </span>
+              </td>
+            </tr>
+          </table>
+
+          <center style="padding-top: 0.5em;">
+            <br>
+            <video width=49% autoplay playsinline muted class="noloop">
+              <source src="images/hopper-merged.mp4" type="video/mp4">
+            </video>
+            <video width=49% autoplay playsinline muted class="noloop">
+              <source src="images/walker2d-merged.mp4" type="video/mp4">
+            </video>
+            <br>
+            <br>
+            <span style="opacity: 0.0; cursor: pointer;">
+              <img style="vertical-align: middle;" src='images/replay-arrow-cropped-01.png' width=15px>
+              <font style="vertical-align: middle; color: #bb2222;">replay</font>
+            </span>
+              &nbsp;&nbsp;
+            <video width=49% autoplay playsinline muted class="noloop" onended="monitor('replay')" style="vertical-align: middle;">
+              <source src="images/joined.mp4" type="video/mp4">
+            </video>
+              &nbsp;&nbsp;
+            <span style="opacity: 0.0; cursor: pointer;" onclick="replay('noloop', 'replay')" class="nounderline replay">
+              <img style="vertical-align: middle;" src='images/replay-arrow-cropped-01.png' width=15px>
+              <font style="vertical-align: middle; color: #bb2222;">replay</font>
+            </span>
+          </center>
+        </div>
+        <br>
+        <br>
+
+        <div class="content" align="left" style="width: 100%;">
+          <div class="title"><b>Variable-length planning</b></div>
+          <p>
+            Diffuser's planning horizon is determined by the size of the random noise used to initialize the denoising process.
+          </p>
+          <video width=90% loop autoplay playsinline muted class="loop">
+            <source src="images/halfcheetah-speed.mp4" type="video/mp4">
+          </video>
+        </div>
+        <br>
+        <br>
+
+        <div class="content" align="left" style="width: 100%;">
+          <div class="title"><b>Flexible behavior synthesis</b></div>
+          <p>
+            Diffuser acts as an unconditional prior over possible behaviors.
+            We can plan for new test-time tasks by guiding its sampled plans with reward functions or constraints.
+            All of the plans below are executed by a single model.
+          </p>
+          <br>
+          <div align="center">
+            <p>
+              <font style="color: #bb2222">Unconditional stacking:</font> Maximize the height of a block tower, with no further constraints.
+            </p>
+            <video width=32% autoplay playsinline muted class="noloop_blocks" style="vertical-align: middle;">
+              <source src='images/blocks/uncond_stack/1.mp4' type="video/mp4">
+            </video>
+            <video width=32% autoplay playsinline muted class="noloop_blocks" style="vertical-align: middle;" onended="monitor('replay_blocks')">
+              <source src='images/blocks/uncond_stack/5.mp4' type="video/mp4">
+            </video>
+            <video width=32% autoplay playsinline muted class="noloop_blocks" style="vertical-align: middle;" onended="monitor('replay_blocks')">
+              <source src='images/blocks/uncond_stack/6.mp4' type="video/mp4">
+            </video>
+          </div>
+          <br>
+
+            <div style="width: 100%;">
+              <div style="float: left; width: 14%; display: inline-block;">
+                &nbsp;
+              </div>
+              <div style="float: left; width: 70%; display: inline-block; text-align: center;">
+                <p>
+                  <font style="color: #bb2222">Conditional stacking:</font> Stack towers subject to test-time constraints.
+                </p>
+              </div>
+              <div style="float: left; width: 14%; display: inline-block; opacity: 0.0; cursor: pointer;" onclick="replay('noloop_blocks', 'replay_blocks')" class="nounderline replay_blocks">
+                <img style="vertical-align: middle;" src='images/replay-arrow-cropped-01.png' width=15px>
+                <font style="vertical-align: middle; color: #bb2222;">replay</font>
+              </div>
+              <br style="clear: left;"/>
+            </div>
+
+          <div align="center">
+            <video width=32% autoplay playsinline muted class="noloop_blocks">
+              <source src='images/blocks/cond_stack/1.mp4' type="video/mp4">
+            </video>
+            <video width=32% autoplay playsinline muted class="noloop_blocks">
+              <source src='images/blocks/cond_stack/3.mp4' type="video/mp4">
+            </video>
+<!--             <video width=24% autoplay playsinline muted class="noloop_blocks">
+              <source src='images/blocks/rearrange/0.mp4' type="video/mp4">
+            </video> -->
+            <video width=32% autoplay playsinline muted class="noloop_blocks">
+              <source src='images/blocks/rearrange/1.mp4' type="video/mp4">
+            </video>
+            <img style="vertical-align: middle; padding-top: 2px; padding-left: 2%; padding-right: 2%;"
+              src='images/blocks/png/cond_1.png' width=32%>
+            <img style="vertical-align: middle; padding-top: 2px; padding-left: 2%; padding-right: 2%;"
+              src='images/blocks/png/cond_3.png' width=32%>
+<!--             <img style="vertical-align: middle; padding-top: 2px; padding-left: 1%; padding-right: 1%;"
+              src='images/blocks/png/rearrange_0.png' width=24%> -->
+            <img style="vertical-align: middle; padding-top: 2px; padding-left: 2%; padding-right: 2%;"
+              src='images/blocks/png/rearrange_1.png' width=32%>
+          </div>
+
+        </div>
+        <br>
+        <br>
+        <br>
+
+        <div class="video-container">
+          <center>
+            <iframe src="https://drive.google.com/file/d/1JxCJcRfDSt1brpUJkgEGL3Li3-loxGug/preview"
+                    width="80%" allow="autoplay"></iframe>
+            </center>
+        </div>
+        <br>
+        <br>
+
+        <div class="content" align="left" style="width: 100%;">
+          <div class="title"><b>Planning with Diffusion for Flexible Behavior Synthesis</b></div>
+             <div class="authors">
+                <a href="https://jannerm.github.io/">Michael Janner</a><sup>*</sup>,
+                <a href="https://yilundu.github.io/">Yilun Du</a><sup>*</sup>,
+                <a href="https://cocosci.mit.edu/josh">Joshua Tenenbaum</a>, and
+                <a href="https://people.eecs.berkeley.edu/~svlevine/">Sergey Levine</a>
+            </div>
+            <div>
+              <span class="link"><a href="https://icml.cc/">ICML 2022</a></span>&nbsp;&nbsp;
+              <span>
+                <a href="https://arxiv.org/abs/2205.09991" class="link2">Paper</a>&nbsp;
+                <a href="https://github.com/jannerm/diffuser" class="link2">Code</a>&nbsp;
+                <a href="https://colab.research.google.com/drive/1YajKhu-CUIGBJeQPehjVPJcK_b38a8Nc?usp=sharing" class="link2">Colab</a>&nbsp;
+                <a href="files/bib.txt" class="link2">BibTex</a>&nbsp;
+              </span>
+            </div>
+            <div style="font-size: 0.75em;">
+              <span>*</span>equal contribution
+            </div>
+        </div>
+
+    </div>
+
+<br><br><br><br>  
+
+
+</div></body></html>
+
+<script>
+  retime(5, "noloop");
+  retime(8.1, "loop");
+</script>

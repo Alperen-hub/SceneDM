@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+
+<!-- === Header Starts === -->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title> TrafficGen: Learning to Generate Diverse and Realistic Traffic Scenarios</title>
+    <link href="./assets/bootstrap.min.css" rel="stylesheet">
+    <link href="./assets/font.css" rel="stylesheet" type="text/css">
+    <link href="./assets/style.css" rel="stylesheet" type="text/css">
+    <script src="./assets/jquery.min.js"></script>
+    <script type="text/javascript" src="assets/corpus.js"></script>
+
+</head>
+<!-- === Header Ends === -->
+
+<script>
+    var lang_flag = 1;
+
+
+
+</script>
+
+<body>
+
+<!-- === Home Section Starts === -->
+<div class="section" style="margin-top: 15pt">
+    <!-- === Title Starts === -->
+    <div class="header">
+        <!--        <div class="logo">-->
+        <!--            <a href="https://decisionforce.github.io/" target="_blank">-->
+        <!--                <img src="images/deciforce.png">-->
+        <!--            </a>-->
+        <!--        </div>-->
+        <!--        <div style="padding-top: 30pt; margin: 0 50pt;" class="title" id="lang">-->
+        <!--            Safe Driving via Expert Guided Policy Optimization-->
+        <!--        </div>-->
+
+        <table>
+            <tr>
+                <td>
+                    <div style="padding-top: 0pt;padding-left: 140pt;padding-bottom: 12pt" class="title" id="lang">
+                        <b> TrafficGen: Learning to Generate Diverse<br>
+                            and Realistic Traffic Scenarios </b>
+                    </div>
+
+                </td>
+            </tr>
+        </table>
+
+
+    </div>
+    <!-- === Title Ends === -->
+    <div class="author">
+        <p style="text-align:center">IEEE International Conference on Robotics and Automation (ICRA) 2023</p>
+        <a href="#" target="_blank">Lan Feng</a><sup>1*</sup>,
+        <a href="https://Quanyili.github.io">Quanyi Li</a><sup>2*</sup>,&nbsp;
+        <a href="https://pengzhenghao.github.io" target="_blank">Zhenghao Peng</a><sup>3*</sup>,&nbsp;&nbsp;
+        <a href="https://ariostgx.github.io/website/" target="_blank">Shuhan Tan</a><sup>4</sup>,&nbsp;&nbsp;
+        <a href="https://boleizhou.github.io/" target="_blank">Bolei Zhou</a><sup>3</sup>&nbsp;
+
+    </div>
+
+    <div class="institution" style="font-size: 11pt;">
+        <div>
+            <sup>1</sup>ETH Zurich,
+            <sup>2</sup>University of Edinburgh<br>
+            <sup>3</sup>University of California, Los Angeles,
+            <sup>4</sup>The University of Texas at Austin
+        </div>
+    </div>
+    <table border="0" align="center">
+        <tr>
+            <td align="center" style="padding: 0pt 0 15pt 0">
+                <a class="bar" href="https://metadriverse.github.io/trafficgen/"><b>Webpage</b></a> |
+<!--                <a class="bar" href="https://github.com/metadriverse/policydissect"><b>Code</b></a> |-->
+                <a class="bar" href="https://youtu.be/jPS93-d6msM"><b>Video</b></a> |
+                <a class="bar" href="https://github.com/metadriverse/trafficgen"><b>Code</b></a> |
+                <a class="bar" href="https://arxiv.org/pdf/2210.06609.pdf"><b>Paper</b></a>
+            </td>
+        </tr>
+    </table>
+    <!--    <div class="video-container">-->
+    <center>
+        <video class="video-container" width="90%" height="460" style="padding-left: 20pt;margin-top: 0pt" autoplay
+               muted loop id="teaser_video">
+            <source src="assets/teaser_video.mp4" type=video/mp4>
+        </video>
+        <!--        <script>-->
+        <!--            document.getElementById('teaser_video').play();-->
+        <!--        </script>-->
+    </center>
+    <!--    </div>-->
+</div>
+
+
+<!-- === Overview Section Starts === -->
+<div class="section">
+    <div class="title" id="method">Overview</div>
+    <div class="body">
+        <div class="teaser">
+            <img src="assets/overview.png">
+            <div class="text">
+                <br>
+                Fig. 1 Overview of the proposed method
+            </div>
+        </div>
+        <div class="text">
+            <p>
+                This work introduces a data-driven method called <em>TrafficGen  </em> for traffic scenario generation.
+                It learns from the fragmented human driving data collected in the real world and then can generate
+                realistic traffic scenarios. TrafficGen is an autoregressive generative model with an encoder-decoder
+                architecture. In each autoregressive iteration, it first encodes the current traffic context with the
+                attention mechanism and then decodes a vehicle's initial state followed by generating its long
+                trajectory.
+
+
+            </p>
+
+            <div class="teaser" style="width: 105%; margin-left: -25pt">
+                <img src="assets/record.png">
+                <div class="text">
+                    <br>
+                    Fig. 2: The autoregressive sampling process for vehicle placement.
+                </div>
+            </div>
+
+            <p>
+                TrafficGen synthesizes a complete traffic scenario in an autoregressive way.
+                The first step is to place vehicles on the given map.
+                At each iteration, a vehicle is placed by sampling the spatial probability distribution over all the
+                regions in the scene. We visualize current spatial distribution through the iteration-varying heatmap in the above figure.
+At              the end of sampling, a set of N vehicles are placed at the map and forms the traffic snapshot.
+            </p>
+            <p>
+                We then use a motion forecasting model as the trajectory generator since it can output multi-mode diverse
+                samples. However, motion forecasting models cannot be directly used for long trajectory generation,
+                since they are brittle to distributional shift. We sample one possible future trajectory for each
+                vehicle. To mitigate the long-term cumulative error, only the first several steps of the trajectory
+                are used. Then the long trajectories of a vehicle are generated by several rollouts.
+            </p>
+
+<!--            <div class="text" style="font-size: 10pt;" id="ref-1">-->
+<!--                <p>-->
+<!--                    1. Exerting electrical stimulation on different areas of motor cortex can elicit meaningful body-->
+<!--                    movements <a-->
+<!--                        href="https://reader.elsevier.com/reader/sd/pii/S0896627302010036?token=EE38E077CD5A6737DC1EEDF1309838A9B609E4A47110E15E53C9B42F1EA173094A37ACE7622CFC4B43C21E049E63B947&originRegion=eu-west-1&originCreation=20220920182935">-->
+<!--                    <em>Graziano,-->
+<!--                        Michael SA, et al. "The cortical control of movement revisited." Neuron 36.3 (2002):-->
+<!--                        349-362.</em>-->
+<!--                </a>-->
+
+<!--                </p>-->
+<!--            </div>-->
+
+        </div>
+    </div>
+</div>
+
+
+<div class="section" style="">
+    <div class="title" id="Parkour Demo">Generating diverse traffic scenarios</div>
+    <p>
+        With different HD maps and traffic light signals as input, TrafficGen can generate diverse traffic scenarios in the video below.
+    </p>
+    <center>
+        <video class="video-container" width="100%" height="300" style="" autoplay
+               muted loop id="parkour_video">
+            <source src="assets/Motion_Primitive_Grids.mp4" type=video/mp4>
+        </video>
+    </center>
+    <p>
+        The following video shows that by sampling many times on the same map, TrafficGen can generate diverse
+        traffic flows.
+    </p>
+    <center>
+        <video class="video-container" width="100%" height="300" style="padding-right: 10pt" autoplay
+               muted loop id="parkour_demo">
+            <source src="assets/parkour.mp4" type=video/mp4>
+        </video>
+    </center>
+</div>
+
+<!--<div class="section" style="">-->
+<!--    <div class="title" id="Tracking Demo">Ablation Study: Comparison with goal-conditioned controller</div>-->
+<!--    <div class="text">-->
+<!--        <p>-->
+<!--            To quantify the coarseness of the goal-tracking controller empowered by <em>Policy Dissection</em>,-->
+<!--            an explicit goal-conditioned controller following a target yaw is trained in <a-->
+<!--                href="https://github.com/NVIDIA-Omniverse/IsaacGymEnvs">IsaacGym </a>.-->
+<!--            We directly identify the primitives related to yaw rate in this controller with the proposed method, and-->
+<!--            employ-->
+<!--            a PID controller to determine the output of the neuron related to yaw rate. This enables a new way,-->
+<!--            neural primitive activation, to track target command besides explicitly indicating the goal in the network-->
+<!--            input.-->
+<!--        </p>-->
+<!--        <p>-->
+<!--            Consequently, experiments can be conducted to fairly compare these two methods for quantifying the-->
+<!--            coarseness of <em>Policy Dissection</em> enabled goal-conditioned control.-->
+<!--            As shown in the video, the tracking precision of the goal-conditioned controller achieved by our method is-->
+<!--            compatible to the explict goal-conditioned control method.-->
+<!--            <br><br><em><b>Note</b>: the explict target yaw command in the observation is set to 0 for the primitive-->
+<!--            activation command tracking.</em>-->
+<!--        </p>-->
+<!--    </div>-->
+<!--    <center>-->
+<!--        <video class="video-container" width="100%" height="508" style="padding-right: 10pt" autoplay-->
+<!--               muted loop id="tracking_video">-->
+<!--            <source src="assets/acc_tracking.mp4" type=video/mp4>-->
+<!--        </video>-->
+<!--    </center>-->
+<!--</div>-->
+
+<div class="section" style=" text-align: left">
+    <div class="title" id="Demo Video">Demo Video</div>
+    This video shows scenarios generated by <em>TrafficGen</em> exhibits complex social behaviors. The
+    generated scenarios can have many downstream applications, such as RL training and SDV testing.
+    <div class="body">
+        <div class="video-container" style="position: relative; padding-top: 2%; margin: 0pt auto; text-align: center;">
+<iframe width="900" height="600" src="https://www.youtube.com/embed/jPS93-d6msM" title="YouTube video player"
+        frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
+        </div>
+    </div>
+</div>
+
+
+<div class="section" style=" text-align: left">
+    <div class="title" id="Ack">Acknowledgement </div>
+    The project is partially supported by Samsung Global Collaboration Award and Cisco Faculty Award.
+</div>
+
+
+<!-- === Reference Section Starts === -->
+<div class="section">
+    <div class="bibtex">
+        <div class="text">Reference</div>
+    </div>
+    <pre>
+@article{feng2022trafficgen,
+  title={TrafficGen: Learning to Generate Diverse and Realistic Traffic Scenarios},
+  author={Feng, Lan and Li, Quanyi and Peng, Zhenghao and Tan, Shuhan and Zhou, Bolei},
+  journal={arXiv preprint arXiv:2210.06609},
+  year={2022}
+}
+    </pre>
+    <!-- Adjust the frame size based on the demo (Every project differs). -->
+</div>
+
+</body>
+</html>
