@@ -235,16 +235,23 @@
                 Note:
             </p>
             <p style="width: 1000px; margin: 0 auto; text-align: justify">
-                (1) <span style="font-weight: 900;">SceneDMF</span>, an extension of SceneDM, incorporates the proposed scene-level evaluation module, which is not present in SceneDM.
+                (1) We further optimize the parameters of the <span style="font-weight: 900;">SceneDM</span> and increase the number of training iterations, 
+                so the current results on the leaderboard are better than those reported in the paper.
             </p>
             <p style="width: 1000px; margin: 0 auto; text-align: justify">
-                (2) The leaderboard results is updated up to September 23, 2023.
+                (2) <span style="font-weight: 900;">SceneDMF</span>, an extension of <span style="font-weight: 900;">SceneDM</span>, incorporates the proposed scene-level evaluation module, which is not present in <span style="font-weight: 900;">SceneDM</span>.
             </p>
             <p style="width: 1000px; margin: 0 auto; text-align: justify">
-                (3) Realism meta-metric is the primary metric for ranking the methods and higher value indicate better model performance.
+                (3) The leaderboard results is updated up to September 23, 2023. 
+                <a href="https://waymo.com/open/challenges/2023/sim-agents/" style="text-decoration: none;">
+                    &rarr; Waymo Sim Agents Challenge
+                </a>
             </p>
             <p style="width: 1000px; margin: 0 auto; text-align: justify">
-                (4) Kinematic metrics, Interactive metrics, and Map-based metrics are the weighted sums of their respective sub-indicators.
+                (4) Realism meta-metric is the primary metric for ranking the methods and higher value indicate better model performance.
+            </p>
+            <p style="width: 1000px; margin: 0 auto; text-align: justify">
+                (5) Kinematic metrics, Interactive metrics, and Map-based metrics are the weighted sums of their respective sub-indicators.
             </p>
         </div>
         <table>
@@ -259,11 +266,18 @@
             </thead>
             <tbody>
               <tr>
-                <td>SceneDMF</td>
+                <td>SceneDMF (Ours)</td>
                 <td style="text-align: center; font-weight: 900;">0.5060</td>
-                <td style="text-align: center; font-weight: 900;">0.4244</td>
+                <td style="text-align: center;">0.4244</td>
                 <td style="text-align: center; font-weight: 900;">0.5264</td>
                 <td style="text-align: center;">0.6062</td>
+              </tr>
+              <tr>
+                <td style="background-color: rgba(23, 24, 24, 0.151);">SceneDM (Ours)</td>
+                <td style="text-align: center; background-color: rgba(23, 24, 24, 0.151);">0.5000</td>
+                <td style="text-align: center; font-weight: 900; background-color: rgba(23, 24, 24, 0.151);">0.4245</td>
+                <td style="text-align: center; background-color: rgba(23, 24, 24, 0.151);">0.5175</td>
+                <td style="text-align: center; background-color: rgba(23, 24, 24, 0.151);">0.5960</td>
               </tr>
               <tr>
                 <td>MTR_E</td>
@@ -273,11 +287,11 @@
                 <td style="text-align: center; font-weight: 900;">0.6073</td>
               </tr>
               <tr>
-                <td>Multipath</td>
-                <td style="text-align: center;">0.4888</td>
-                <td style="text-align: center;">0.4073</td>
-                <td style="text-align: center;">0.4991</td>
-                <td style="text-align: center;">0.6018</td>
+                <td style="background-color: rgba(23, 24, 24, 0.151);">Multipath</td>
+                <td style="text-align: center; background-color: rgba(23, 24, 24, 0.151);">0.4888</td>
+                <td style="text-align: center; background-color: rgba(23, 24, 24, 0.151);">0.4073</td>
+                <td style="text-align: center; background-color: rgba(23, 24, 24, 0.151);">0.4991</td>
+                <td style="text-align: center; background-color: rgba(23, 24, 24, 0.151);">0.6018</td>
               </tr>
               <tr>
                 <td>MTR+++</td>
@@ -287,11 +301,11 @@
                 <td style="text-align: center;">0.6028</td>
               </tr>
               <tr>
-                <td>CAD</td>
-                <td style="text-align: center;">0.4321</td>
-                <td style="text-align: center;">0.3357</td>
-                <td style="text-align: center;">0.4355</td>
-                <td style="text-align: center;">0.5723</td>
+                <td style="background-color: rgba(23, 24, 24, 0.151);">CAD</td>
+                <td style="text-align: center; background-color: rgba(23, 24, 24, 0.151);">0.4321</td>
+                <td style="text-align: center; background-color: rgba(23, 24, 24, 0.151);">0.3357</td>
+                <td style="text-align: center; background-color: rgba(23, 24, 24, 0.151);">0.4355</td>
+                <td style="text-align: center; background-color: rgba(23, 24, 24, 0.151);">0.5723</td>
               </tr>
               <tr>
                 <td>Sim_agents_tutorial</td>
@@ -301,11 +315,11 @@
                 <td style="text-align: center;">0.4599</td>
               </tr>
               <tr>
-                <td>QCNeXt</td>
-                <td style="text-align: center;">0.3920</td>
-                <td style="text-align: center;">0.3109</td>
-                <td style="text-align: center;">0.4454</td>
-                <td style="text-align: center;">0.4433</td>
+                <td style="background-color: rgba(23, 24, 24, 0.151);">QCNeXt</td>
+                <td style="text-align: center; background-color: rgba(23, 24, 24, 0.151);">0.3920</td>
+                <td style="text-align: center; background-color: rgba(23, 24, 24, 0.151);">0.3109</td>
+                <td style="text-align: center; background-color: rgba(23, 24, 24, 0.151);">0.4454</td>
+                <td style="text-align: center; background-color: rgba(23, 24, 24, 0.151);">0.4433</td>
               </tr>
             </tbody>
           </table>
@@ -335,7 +349,7 @@
             </thead>
             <tbody>
               <tr>
-                <td>SceneDMF</td>
+                <td>SceneDMF (Ours)</td>
                 <td style="font-weight: 900;">0.5060</td>
                 <td>0.4315</td>
                 <td style="font-weight: 900;">0.2767</td>
@@ -346,6 +360,19 @@
                 <td style="font-weight: 900;">0.8128</td>
                 <td>0.6215</td>
                 <td style="font-weight: 900;">0.5985</td>
+              </tr>
+              <tr>
+                <td style="background-color: rgba(23, 24, 24, 0.151);">SceneDM (Ours)</td>
+                <td style="background-color: rgba(23, 24, 24, 0.151);">0.5000</td>
+                <td style="background-color: rgba(23, 24, 24, 0.151);">0.4316</td>
+                <td style="background-color: rgba(23, 24, 24, 0.151);">0.2765</td>
+                <td style="background-color: rgba(23, 24, 24, 0.151);">0.5232</td>
+                <td style="background-color: rgba(23, 24, 24, 0.151);">0.4666</td>
+                <td style="background-color: rgba(23, 24, 24, 0.151);">0.3650</td>
+                <td style="background-color: rgba(23, 24, 24, 0.151);">0.4473</td>
+                <td style="background-color: rgba(23, 24, 24, 0.151);">0.8102</td>
+                <td style="background-color: rgba(23, 24, 24, 0.151);">0.6195</td>
+                <td style="background-color: rgba(23, 24, 24, 0.151);">0.5843</td>
               </tr>
               <tr>
                 <td>MTR_E</td>
@@ -361,17 +388,17 @@
                 <td>0.5840</td>
               </tr>
               <tr>
-                <td>Multipath</td>
-                <td>0.4888</td>
-                <td style="font-weight: 900;">0.4318</td>
-                <td>0.2304</td>
-                <td>0.5149</td>
-                <td>0.4521</td>
-                <td>0.3440</td>
-                <td>0.4198</td>
-                <td>0.8127</td>
-                <td>0.6394</td>
-                <td>0.5830</td>
+                <td style="background-color: rgba(23, 24, 24, 0.151);">Multipath</td>
+                <td style="background-color: rgba(23, 24, 24, 0.151);">0.4888</td>
+                <td style="font-weight: 900; background-color: rgba(23, 24, 24, 0.151);">0.4318</td>
+                <td style="background-color: rgba(23, 24, 24, 0.151);">0.2304</td>
+                <td style="background-color: rgba(23, 24, 24, 0.151);">0.5149</td>
+                <td style="background-color: rgba(23, 24, 24, 0.151);">0.4521</td>
+                <td style="background-color: rgba(23, 24, 24, 0.151);">0.3440</td>
+                <td style="background-color: rgba(23, 24, 24, 0.151);">0.4198</td>
+                <td style="background-color: rgba(23, 24, 24, 0.151);">0.8127</td>
+                <td style="background-color: rgba(23, 24, 24, 0.151);">0.6394</td>
+                <td style="background-color: rgba(23, 24, 24, 0.151);">0.5830</td>
               </tr>
               <tr>
                 <td>MTR+++</td>
@@ -387,17 +414,17 @@
                 <td>0.5770</td>
               </tr>
               <tr>
-                <td>CAD</td>
-                <td>0.4321</td>
-                <td>0.3464</td>
-                <td>0.2526</td>
-                <td>0.4327</td>
-                <td>0.3110</td>
-                <td>0.3300</td>
-                <td>0.3114</td>
-                <td>0.7893</td>
-                <td>0.6376</td>
-                <td>0.5397</td>
+                <td style="background-color: rgba(23, 24, 24, 0.151);">CAD</td>
+                <td style="background-color: rgba(23, 24, 24, 0.151);">0.4321</td>
+                <td style="background-color: rgba(23, 24, 24, 0.151);">0.3464</td>
+                <td style="background-color: rgba(23, 24, 24, 0.151);">0.2526</td>
+                <td style="background-color: rgba(23, 24, 24, 0.151);">0.4327</td>
+                <td style="background-color: rgba(23, 24, 24, 0.151);">0.3110</td>
+                <td style="background-color: rgba(23, 24, 24, 0.151);">0.3300</td>
+                <td style="background-color: rgba(23, 24, 24, 0.151);">0.3114</td>
+                <td style="background-color: rgba(23, 24, 24, 0.151);">0.7893</td>
+                <td style="background-color: rgba(23, 24, 24, 0.151);">0.6376</td>
+                <td style="background-color: rgba(23, 24, 24, 0.151);">0.5397</td>
               </tr>
               <tr>
                 <td>Sim_agents_tutorial</td>
@@ -413,17 +440,17 @@
                 <td>0.4111</td>
               </tr>
               <tr>
-                <td>QCNeXt</td>
-                <td>0.3920</td>
-                <td>0.4773</td>
-                <td>0.2424</td>
-                <td>0.3252</td>
-                <td>0.1987</td>
-                <td style="font-weight: 900;">0.3759</td>
-                <td>0.3244</td>
-                <td>0.7569</td>
-                <td>0.6099</td>
-                <td>0.3600</td>
+                <td style="background-color: rgba(23, 24, 24, 0.151);">QCNeXt</td>
+                <td style="background-color: rgba(23, 24, 24, 0.151);">0.3920</td>
+                <td style="background-color: rgba(23, 24, 24, 0.151);">0.4773</td>
+                <td style="background-color: rgba(23, 24, 24, 0.151);">0.2424</td>
+                <td style="background-color: rgba(23, 24, 24, 0.151);">0.3252</td>
+                <td style="background-color: rgba(23, 24, 24, 0.151);">0.1987</td>
+                <td style="font-weight: 900; background-color: rgba(23, 24, 24, 0.151);">0.3759</td>
+                <td style="background-color: rgba(23, 24, 24, 0.151);">0.3244</td>
+                <td style="background-color: rgba(23, 24, 24, 0.151);">0.7569</td>
+                <td style="background-color: rgba(23, 24, 24, 0.151);">0.6099</td>
+                <td style="background-color: rgba(23, 24, 24, 0.151);">0.3600</td>
               </tr>
               <!-- 其他行... -->
             </tbody>
