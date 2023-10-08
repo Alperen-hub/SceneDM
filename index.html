@@ -117,14 +117,11 @@
             </div>
             <div>
                 <p class="text-justify2">
-                    SceneDM consists of a scene encoder and a Transformer-based 
-                    denoisier network. The denoiser network utilizes the agent embedding learned by the scene 
-                    encoder to remove noise from the noisy trajectory. During training, SceneDM first augments 
-                    the  trajectory sequence  by concatenating adjacent motion states and imposes the same noise to the overlapping part. 
-                    We further introduce a smoothness regularization term to improve the generated trajectory's smoothness. 
-                    At the generating phase, we achieve temporal consistent of the latent variable through temporal-consist 
-                    guidance. Finally, a scene-level scoring module is designed to filter out unrealistic simulations, 
-                    ensuring the practicality of the generated samples.
+                    SceneDM consists of a scene encoder and a Transformer-based denoisier network. The denoiser network utilizes the agent embedding learned by the scene 
+                    encoder to remove noise from the noisy trajectory. During training, SceneDM first augments the trajectory sequence by concatenating adjacent motion states 
+                    and imposes the same noise to the overlapping part. Models are then trained to predict the added noise. Furthermore, we introduce a smoothness regularization 
+                    to improve the generated trajectory's smoothness.  At the generating phase, we achieve temporal consistency of the latent variable through the propsoed temporal-consistent 
+                    guidance. Finally, a scene-level scoring module is designed to filter out unrealistic simulations,  ensuring the practicality of the generated samples.
                 </p>
             </div>
         </div>
@@ -140,8 +137,8 @@
         <div>
             <p style="width: 1280px; margin: 0 auto; text-align: justify; font-size: 18px;">
                 With HD maps and historal trajectories as input, SceneDM initially samples noise from the Gaussian distribution and
-                gradually removes trajectory noises until convergence. By repeating the sampling and denoising process, 
-            SceneDM is capable to generate multiple scenes, fully exploiting the multi-modal characteristics of the traffic scene.
+                gradually removes trajectory noise until convergence. By repeating the sampling and denoising process, 
+            SceneDM is capable to generate multiple diverse scenes, fully exploiting the multi-modal characteristics of the traffic scene.
             </p>
         </div>
         <br>
