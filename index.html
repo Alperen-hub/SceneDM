@@ -119,7 +119,7 @@
                 <p class="text-justify2">
                     SceneDM consists of a scene encoder and a Transformer-based denoisier network. The denoiser network utilizes the agent embedding learned by the scene 
                     encoder to remove noise from the noisy trajectory. During training, SceneDM first augments the trajectory sequence by concatenating adjacent motion states 
-                    and imposes the same noise to the overlapping part. Models are then trained to predict the added noise. Furthermore, we introduce a smoothness regularization 
+                    and imposes the same noise to the overlapping part. Models are then optimized to predict the added noise. Furthermore, we introduce a smoothness regularization 
                     to improve the generated trajectory's smoothness.  At the generating phase, we achieve temporal consistency of the latent variable through the propsoed temporal-consistent 
                     guidance. Finally, a scene-level scoring module is designed to filter out unrealistic simulations,  ensuring the practicality of the generated samples.
                 </p>
@@ -245,15 +245,13 @@
                 </a>
             </p>
             <p style="width: 1000px; margin: 0 auto; text-align: justify">
-                (4) Realism meta-metric is the primary metric for ranking the methods and higher value indicates better model performance.
+                (4) Realism meta-metric is the primary metric for ranking the methods and higher value indicates better model performance. The best two results are 
+                indicated in <span style="font-weight: 900;">bold</span> and <span style="text-decoration: underline;">underlined</span>, respectively.
             </p>
             <p style="width: 1000px; margin: 0 auto; text-align: justify">
                 (5) Kinematic metrics, Interactive metrics, and Map-based metrics are calcultaed by the weighted sum of their respective sub-metrics.
             </p>
-            <p style="width: 1000px; margin: 0 auto; text-align: justify">
-                (6) The best result is indicated in <span style="font-weight: 900;">bold</span>, 
-                and the second best result is indicated with an <span style="text-decoration: underline;">underline</span>.
-            </p>
+            <br>
         </div>
         <table>
             <thead>
