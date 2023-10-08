@@ -120,7 +120,7 @@
                     SceneDM consists of a scene encoder and a Transformer-based denoisier network. The denoiser network utilizes the agent embedding learned by the scene 
                     encoder to remove noise from the noisy trajectory. During training, SceneDM first augments the trajectory sequence by concatenating adjacent motion states 
                     and imposes the same noise to the overlapping part. Models are then optimized to predict the added noise. Furthermore, we introduce a smoothness regularization 
-                    to improve the generated trajectory's smoothness.  At the generating phase, we achieve temporal consistency of the latent variable through the propsoed temporal-consistent 
+                    to improve the generated trajectory's smoothness.  At the generating phase, we achieve temporal consistency of the latent variable through the proposed temporal-consistent 
                     guidance. Finally, a scene-level scoring module is designed to filter out unrealistic simulations,  ensuring the practicality of the generated samples.
                 </p>
             </div>
