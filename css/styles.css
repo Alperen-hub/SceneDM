@@ -53,7 +53,7 @@ table {
     background-color: #f5f5f5;
   }
 
-  vertical-line {
+  .vertical-line {
     display: inline-block;
     border-left: 1.5px solid black;
     height: 20px;
