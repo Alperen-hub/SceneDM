@@ -97,20 +97,20 @@
                 </div>
                 <div class="col-md-7">
                     <p class="text-justify">
-                        Realistic scene-level multi-agent motion simulations are crucial for developing 
-                        and evaluating self-driving algorithms. However, most existing works focus on generating 
-                        trajectories for a certain single agent type, and typically ignore the consistency of 
-                        generated trajectories. In this paper, we propose a novel framework based on diffusion 
-                        models, called SceneDM, to generate joint and consistent future motions of all the agents, 
-                        including vehicles, bicycles, pedestrians, etc., in a scene. 
-                        To enhance the consistency of the generated trajectories, 
-                        we resort to a new Transformer-based network to effectively handle agent-agent interactions 
-                        in the inverse process of motion diffusion. In consideration of the smoothness of agent 
-                        trajectories, we further design a simple yet effective consistent diffusion approach, 
-                        to improve the model in exploiting short-term temporal dependencies. 
-                        Furthermore, a scene-level scoring function is attached to evaluate the safety 
-                        and road-adherence of the generated agent's motions and help filter out unrealistic simulations. 
-                        Finally, SceneDM achieves state-of-the-art results on the Waymo Sim Agents Benchmarks.
+                        Realistic multi-agent motion simulations are essential for the advancement 
+                        of self-driving algorithms. However,the majority of existing works tend to 
+                        overlook the kinematic realism of the simulated motions. In this paper, we 
+                        present SceneDM, a novel consistent diffusion model designed to jointly generate 
+                        consistent and realistic motions for all types of agents within a traffic scene. 
+                        To employ temporal dependencies and improve the kinematic realism of the generated 
+                        motions, we introduce an innovative constructive noise pattern alongside smoothing 
+                        regularization techniques integrated into the framework of the diffusion model. 
+                        Moreover, the inference procedure of this model is tailored to effectively ensure 
+                        local temporal consistency. Furthermore, a scene-level scoring function is incorporated to 
+                        evaluate the safety and road adherence of the generated agents’ motions, helping to filter 
+                        out unrealistic simulations. Through empirical validation in the Waymo Sim Agents task, we 
+                        substantiate the effectiveness of SceneDM in improving the smoothness and realism of generated 
+                        agent trajectories. 
                     </p>
                 </div>
             </div>
